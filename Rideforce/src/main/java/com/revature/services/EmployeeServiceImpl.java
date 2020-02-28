@@ -28,21 +28,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public List<Employee> getEmployeeByUsername(String username) {
-		//return er.findByUsername(username);
-		return null;
+	public Employee getEmployeeByUsername(String username) {
+		return er.findByUsername(username);
 	}
 
 	@Override
 	public List<Employee> getEmployeeByRole(boolean isDriver) {
-		//return er.findByIsDriver(isDriver);
-		return null;
+		return er.findByIsDriver(isDriver);
 	}
 
 	@Override
 	public List<Employee> getEmployeeByRoleAndOffice(boolean isDriver, Office office) {
-		//return er.findByIsDriverAndOffice(isDriver, office);
-		return null;
+		return er.findByIsDriverAndOffice(isDriver, office);
 	}
 
 	@Override

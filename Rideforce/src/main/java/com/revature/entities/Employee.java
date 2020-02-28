@@ -59,7 +59,7 @@ public class Employee {
 	
 	@Column (name = "is_driver")
 	@Schema (example = "true")
-	private boolean is_driver;
+	private boolean isDriver;
 	
 	@Column (name = "is_manager")
 	@Schema (example = "true")
@@ -76,7 +76,7 @@ public class Employee {
 
 	public Employee(int employee_id, String email, String first_name, String last_name, String phone_number,
 			String username, String password, String user_address, boolean is_accepting_rides, boolean is_active,
-			boolean is_driver, boolean is_manager, Office office) {
+			boolean isDriver, boolean is_manager, Office office) {
 		super();
 		this.employee_id = employee_id;
 		this.email = email;
@@ -88,7 +88,7 @@ public class Employee {
 		this.user_address = user_address;
 		this.is_accepting_rides = is_accepting_rides;
 		this.is_active = is_active;
-		this.is_driver = is_driver;
+		this.isDriver = isDriver;
 		this.is_manager = is_manager;
 		this.office = office;
 	}
@@ -173,12 +173,12 @@ public class Employee {
 		this.is_active = is_active;
 	}
 
-	public boolean isIs_driver() {
-		return is_driver;
+	public boolean isIsDriver() {
+		return isDriver;
 	}
 
-	public void setIs_driver(boolean is_driver) {
-		this.is_driver = is_driver;
+	public void setIsDriver(boolean isDriver) {
+		this.isDriver = isDriver;
 	}
 
 	public boolean isIs_manager() {
@@ -202,7 +202,7 @@ public class Employee {
 		return "Employee [employee_id=" + employee_id + ", email=" + email + ", first_name=" + first_name
 				+ ", last_name=" + last_name + ", phone_number=" + phone_number + ", username=" + username
 				+ ", password=" + password + ", user_address=" + user_address + ", is_accepting_rides="
-				+ is_accepting_rides + ", is_active=" + is_active + ", is_driver=" + is_driver + ", is_manager="
+				+ is_accepting_rides + ", is_active=" + is_active + ", isDriver=" + isDriver + ", is_manager="
 				+ is_manager + ", office=" + office + "]";
 	}
 	
