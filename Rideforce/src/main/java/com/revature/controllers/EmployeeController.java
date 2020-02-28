@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.aspects.LogIt;
 import com.revature.entities.Employee;
 import com.revature.services.EmployeeService;
-import com.revature.services.OfficeService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -35,9 +34,6 @@ public class EmployeeController {
 	
 	@Autowired
 	private EmployeeService es;
-	
-	@Autowired
-	private OfficeService or;
 	
 	@PostMapping
 	@Operation(summary = "Log in operation", description="Returns employee", tags={"User"})
