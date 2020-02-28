@@ -32,7 +32,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class CarController {
 
 	@Autowired
-	private CarService cs;
+	private CarService cs; 
 	
 	@Operation(summary= "Return list of all cars",description="Returns all cars", tags={"Car"})
 	@GetMapping(produces = "application/json")
