@@ -8,6 +8,7 @@ class RideforceApplicationTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
 
 }
