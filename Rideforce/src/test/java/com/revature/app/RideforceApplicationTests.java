@@ -138,7 +138,7 @@ class RideforceApplicationTests {
 	
 	@Test //THIS DOES NOT WORK 
 	void deleteEmployee() {
-		Employee employee = es.getEmployeeById(11); 
+		Employee employee = es.getEmployeeById(12); 
 		es.deleteEmployee(employee); 
 		System.out.println(employee);
 	}
@@ -184,8 +184,7 @@ class RideforceApplicationTests {
 	void getOfficeById() {
 		Office office = os.getOfficeById(2); 
 		System.out.println(office);
-		
-		
+	
 	}
 	
 	@Test //works
