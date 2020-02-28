@@ -20,11 +20,11 @@ public class Configuration {
 	private int configuration_id;
 	
 	@Column(name = "label")
-	@Schema (example = "asga")
+	@Schema (example = "API_KEY")
 	private String label;
 	
 	@Column(name = "value")
-	@Schema (example = "asdf")
+	@Schema (example = "TOTALLYANAPIKEY")
 	private String value;
 
 	public Configuration() {
