@@ -1,15 +1,32 @@
 package com.revature.entities;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Parameter;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.jasypt.hibernate4.type.EncryptedStringType;
+
 import javax.persistence.ManyToOne;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+
+
+@TypeDef(
+        name="encryptedString",
+        typeClass=EncryptedStringType.class,
+        parameters= {
+                // value will be used later to register encryptor
+                @Parameter(name="encryptorRegisteredName", value="STRING_ENCRYPTOR")
+        }
+)
 
 @Entity
 @Table(name = "employee")
@@ -41,6 +58,7 @@ public class Employee {
 	@Schema (example = "asdf")
 	private String username;
 	
+	@Type(type="encryptedString")
 	@Column (name = "password")
 	@Schema (example = "password")
 	private String password;

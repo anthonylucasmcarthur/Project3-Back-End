@@ -3,6 +3,8 @@ package com.revature.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.jasypt.hibernate4.encryptor.HibernatePBEEncryptorRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -45,6 +47,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee addEmployee(Employee employee) {
+		
+//		String password = System.getProperty("jasypt.password");
+		StandardPBEStringEncryptor strongEncryptor = new StandardPBEStringEncryptor();
+		strongEncryptor.setPassword(employee.getPassword());
+		HibernatePBEEncryptorRegistry registry =
+		        HibernatePBEEncryptorRegistry.getInstance();
+		registry.registerPBEStringEncryptor("STRING_ENCRYPTOR", strongEncryptor);
+		
 		return er.save(employee);
 	}
 
@@ -75,9 +85,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employee loginEmployee(String username, String password) {
 		Employee e = er.findByUsername(username);
 		
+//		String password = System.getProperty("jasypt.password");
+		 
+		StandardPBEStringEncryptor strongEncryptor = new StandardPBEStringEncryptor();
+		strongEncryptor.setPassword(password);
+		HibernatePBEEncryptorRegistry registry =
+		        HibernatePBEEncryptorRegistry.getInstance();
+		registry.registerPBEStringEncryptor("STRING_ENCRYPTOR", strongEncryptor);
+		
 		if (e.getPassword().equals(password)) {
 			return e;
 		}else {
+			System.out.println(e.getPassword());
 			return null;
 		}
 		
