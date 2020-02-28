@@ -69,13 +69,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee loginEmployee(String username, String password) {
-//		Employee e = er.findByUsername(username).get(0);
-//		
-//		if (e.getPassword().equals(password)) {
-//			return e;
-//		}else {
+		Employee e = er.findByUsername(username);
+		
+		if (e.getPassword().equals(password)) {
+			return e;
+		}else {
 			return null;
-		//}
+		}
 		
 	}
 
