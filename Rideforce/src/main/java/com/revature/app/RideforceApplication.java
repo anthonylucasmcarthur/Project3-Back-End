@@ -20,6 +20,7 @@ public class RideforceApplication {
 		SpringApplication.run(RideforceApplication.class, args); 
 	}
 
+	
     public OpenAPI customOpenAPI() {
         return new OpenAPI()
                 .components(new Components())
