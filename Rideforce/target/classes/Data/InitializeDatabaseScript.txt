@@ -36,7 +36,12 @@ employee_id int,
 FOREIGN KEY (employee_id) REFERENCES employee(employee_id)
 );
 
-
+-- load your api key into this later, and label it API_KEY
+CREATE TABLE configuration (
+	configuration_id int PRIMARY KEY AUTO_INCREMENT,
+	label varchar(200),
+	value varchar(200)
+);
 
 INSERT INTO office VALUES(0, '496 High Street, Morgantown, WV 26506');
 INSERT INTO office VALUES(0, '11730 Plaza America Drive, Reston, VA 20190');
