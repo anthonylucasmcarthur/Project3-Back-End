@@ -1,5 +1,6 @@
 package com.revature.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,8 +61,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public List<Employee> getActiveDrivers() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Employee> employees = (List<Employee>) er.findAll();
+		List<Employee> drivers = new ArrayList<Employee>();
+		for (Employee e : employees) {
+			if (e.isIs_active()) {
+				drivers.add(e);
+			}
+		}
+		return drivers;
 	}
 
 	@Override
