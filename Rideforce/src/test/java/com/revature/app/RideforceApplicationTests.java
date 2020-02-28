@@ -46,6 +46,13 @@ class RideforceApplicationTests {
 		os.updateOffice(office); 
 		System.out.println(office);
 	}
+	
+	@Test // 
+	void deleteOffice() {
+		Office office = os.getOfficeById(5);
+		os.deleteOffice(office); 
+		System.out.println(office);
+	}
 			
 	}
 
