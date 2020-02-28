@@ -8,18 +8,32 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.revature.entities.Car;
 import com.revature.entities.Employee;
+import com.revature.entities.Office;
 import com.revature.services.CarService;
+import com.revature.services.ConfigurationService;
 import com.revature.services.EmployeeService;
+import com.revature.services.OfficeService;
 
 @SpringBootTest
 class RideforceApplicationTests {
 
 
+	// CarServices Tests
 	@Autowired
 	CarService cs;
 	
 	@Autowired
 	EmployeeService er;
+	
+	@Autowired
+	ConfigurationService confs;
+	
+	@Autowired
+	EmployeeService es;
+	
+	@Autowired
+	OfficeService os;
+	
 	
 	@Test   // passed
 	void getCarsTest() {
@@ -78,4 +92,43 @@ class RideforceApplicationTests {
 		
 		cs.deleteCar(car);
 	}
+	
+	@Test
+	void getConfigurationByLabelTest() {
+		String label ="API_KEY";
+		this.confs.getConfigurationByLabel(label);
+	}
+	
+	@Test    // passed
+	void getEmployeesTest() {
+		List<Employee> emp = es.getEmployees();
+	    for (Employee c:emp) {
+	    	System.out.println(c);
+	    }
+	}
+	@Test  //passed
+	void getEmployeeByIdTest() {
+		int id = 4;
+		es.getEmployeeById(id);
+	}
+	@Test  //passed
+	void getEmployeeByUsernameTest() {
+		String username="LGoodfellow";
+		es.getEmployeeByUsername(username);
+	}
+	@Test  //passed
+	void getEmployeeByRoleTest() {
+		boolean isDriver =true ;
+		
+		es.getEmployeeByRole(isDriver);
+	}
+	@Test
+	void getEmployeeByRoleAndOfficeTest() {
+		boolean isDriver =true ;
+		Office office = os.getOfficeById(1);
+		es.getEmployeeByRoleAndOffice(isDriver, office);
+		
+	}
+	
+	
 }
