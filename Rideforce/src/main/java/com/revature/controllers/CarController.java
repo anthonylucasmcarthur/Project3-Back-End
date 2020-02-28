@@ -43,21 +43,21 @@ public class CarController {
 	@LogIt
 	@Operation(summary = "Create car", description="Adds a new car", tags={"Car"})
 	@PostMapping(produces = "application/json")
-	public Car addCar(@Parameter(description="Admin to create", required=true)@Valid @RequestBody(required=true) Car car) {
+	public Car addCar(@Parameter(description="Car to add", required=true)@Valid @RequestBody(required=true) Car car) {
 		return cs.addCar(car);
 	}
 	
 	@LogIt
-	@Operation(summary = "Update specified car", description="Updates car by id", tags={"Car"})
+	@Operation(summary = "Update specified car", description="Updates car", tags={"Car"})
 	@PutMapping(produces = "application/json")
-	public Car updateCar(@Parameter(description="Admin to create", required=true)@Valid @RequestBody(required=true) Car car) {
+	public Car updateCar(@Parameter(description="Car to update", required=true)@Valid @RequestBody(required=true) Car car) {
 		return cs.updateCar(car);
 	}
 	
 	@LogIt
-	@Operation(summary = "Delete specified car", description="Deletes car by id", tags={"Car"})
+	@Operation(summary = "Delete specified car", description="Deletes car", tags={"Car"})
 	@DeleteMapping(produces = "application/json")
-	public boolean deleteCarById(@Parameter(description="Admin to create", required=true)@Valid @RequestBody(required=true) Car car) {
+	public boolean deleteCar(@Parameter(description="Car to delete", required=true)@Valid @RequestBody(required=true) Car car) {
 		return cs.deleteCar(car);
 	}
 	
@@ -69,9 +69,9 @@ public class CarController {
 	}
 	
 	
-	@Operation(summary = "Return car by specified user id", description="Returns car by user id", tags={"Car"})
+	@Operation(summary = "Return car by specified employee id", description="Returns car by employee id", tags={"Car"})
 	@GetMapping(value = "/cars/{employeeId}", produces = "application/json")
-	public Car getCarByEmployeeId(@Parameter(description="Id of User", required=true) @PathVariable("employeeId")int employeeId) {
+	public Car getCarByEmployeeId(@Parameter(description="Id of Employee", required=true) @PathVariable("employeeId")int employeeId) {
 		return cs.getCarByEmployeeId(employeeId);
 	}
 	
