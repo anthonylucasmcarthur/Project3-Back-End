@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.revature.aspects.LogIt;
 import com.revature.entities.Employee;
@@ -22,7 +23,6 @@ import com.revature.services.EmployeeService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Component
@@ -39,6 +39,14 @@ public class EmployeeController {
 	@Operation(summary = "Log in operation", description="Returns employee", tags={"Employee"})
 	public Employee login( @RequestParam(name="username")String username,@RequestParam(name="password")String password) {
 		return es.loginEmployee(username, password);
+	}
+	
+	@LogIt
+	@Operation(summary = "Create employee",description="Adds a new Employee", tags={"Employee"})
+	@PostMapping(produces = "application/json")
+	public Employee addEmployee(@Parameter(description="Employee to create") 
+										 @RequestBody Employee employee) {
+		return es.addEmployee(employee);
 	}
 	
 	@Operation(summary="Return all employees", description="Returns all employees", tags={"Employee"})

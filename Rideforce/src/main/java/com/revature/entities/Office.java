@@ -6,7 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
@@ -21,7 +20,6 @@ public class Office {
 	private int office_id;
 	
 	@Column(name = "office_address")
-	@NotBlank
 	@Schema(example = "496 High Street, Morgantown, WV 26505")
 	private String office_address;
 
@@ -29,7 +27,7 @@ public class Office {
 		super();
 	}
 
-	public Office(int office_id, @NotBlank String office_address) {
+	public Office(int office_id,String office_address) {
 		super();
 		this.office_id = office_id;
 		this.office_address = office_address;
