@@ -39,7 +39,7 @@ public class Employee {
 	
 	@Column (name = "user_name")
 	@Schema (example = "asdf")
-	private String user_name;
+	private String username;
 	
 	@Column (name = "password")
 	@Schema (example = "password")
@@ -75,7 +75,7 @@ public class Employee {
 	}
 
 	public Employee(int employee_id, String email, String first_name, String last_name, String phone_number,
-			String user_name, String password, String user_address, boolean is_accepting_rides, boolean is_active,
+			String username, String password, String user_address, boolean is_accepting_rides, boolean is_active,
 			boolean is_driver, boolean is_manager, Office office) {
 		super();
 		this.employee_id = employee_id;
@@ -83,7 +83,7 @@ public class Employee {
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.phone_number = phone_number;
-		this.user_name = user_name;
+		this.username = username;
 		this.password = password;
 		this.user_address = user_address;
 		this.is_accepting_rides = is_accepting_rides;
@@ -133,12 +133,12 @@ public class Employee {
 		this.phone_number = phone_number;
 	}
 
-	public String getUser_name() {
-		return user_name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setUsername(String user_name) {
+		this.username = user_name;
 	}
 
 	public String getPassword() {
@@ -200,7 +200,7 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [employee_id=" + employee_id + ", email=" + email + ", first_name=" + first_name
-				+ ", last_name=" + last_name + ", phone_number=" + phone_number + ", user_name=" + user_name
+				+ ", last_name=" + last_name + ", phone_number=" + phone_number + ", username=" + username
 				+ ", password=" + password + ", user_address=" + user_address + ", is_accepting_rides="
 				+ is_accepting_rides + ", is_active=" + is_active + ", is_driver=" + is_driver + ", is_manager="
 				+ is_manager + ", office=" + office + "]";

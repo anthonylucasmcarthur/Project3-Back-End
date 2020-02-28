@@ -29,17 +29,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public List<Employee> getEmployeeByUsername(String username) {
-		return er.findByUsername(username);
+		//return er.findByUsername(username);
+		return null;
 	}
 
 	@Override
 	public List<Employee> getEmployeeByRole(boolean isDriver) {
-		return er.findByRole(isDriver);
+		//return er.findByIsDriver(isDriver);
+		return null;
 	}
 
 	@Override
 	public List<Employee> getEmployeeByRoleAndOffice(boolean isDriver, Office office) {
-		return er.findByRoleAndOffice(isDriver, office);
+		//return er.findByIsDriverAndOffice(isDriver, office);
+		return null;
 	}
 
 	@Override
@@ -66,13 +69,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee loginEmployee(String username, String password) {
-		Employee e = er.findByUsername(username).get(0);
-		
-		if (e.getPassword().equals(password)) {
-			return e;
-		}else {
+//		Employee e = er.findByUsername(username).get(0);
+//		
+//		if (e.getPassword().equals(password)) {
+//			return e;
+//		}else {
 			return null;
-		}
+		//}
 		
 	}
 
