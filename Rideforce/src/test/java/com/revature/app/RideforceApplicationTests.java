@@ -6,12 +6,17 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+<<<<<<< Updated upstream
 import com.revature.entities.Car;
 import com.revature.entities.Configuration;
 import com.revature.entities.Employee;
 import com.revature.entities.Office;
 import com.revature.repositories.CarRepo;
 import com.revature.repositories.ConfigurationRepo;
+=======
+import com.revature.entities.Employee;
+import com.revature.entities.Office;
+>>>>>>> Stashed changes
 import com.revature.repositories.EmployeeRepo;
 import com.revature.services.OfficeService;
 
@@ -24,12 +29,15 @@ class RideforceApplicationTests {
 	@Autowired
 	EmployeeRepo er;
 	
+<<<<<<< Updated upstream
 	@Autowired
 	CarRepo cr;
 	
 	@Autowired
 	ConfigurationRepo c;
 	
+=======
+>>>>>>> Stashed changes
 	@Test //works 
 	void getOffices() {
 		List<Office> offices = os.getOffices(); 
@@ -88,6 +96,7 @@ class RideforceApplicationTests {
 		er.delete(employee);
 	}
 	
+<<<<<<< Updated upstream
 	
 	
 	@Test
@@ -98,4 +107,14 @@ class RideforceApplicationTests {
 	
 	
 	
+=======
+	@Test  
+	void getByUsername(){
+		String username = "LGoodfellow";
+		Employee employee = er.findByUsername(username);
+		System.out.println(employee);
+			
+	}
+	
+>>>>>>> Stashed changes
 }
