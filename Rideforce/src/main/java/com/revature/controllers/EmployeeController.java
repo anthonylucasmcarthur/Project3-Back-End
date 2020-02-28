@@ -36,35 +36,35 @@ public class EmployeeController {
 	private EmployeeService es;
 	
 	@PostMapping
-	@Operation(summary = "Log in operation", description="Returns employee", tags={"User"})
+	@Operation(summary = "Log in operation", description="Returns employee", tags={"Employee"})
 	public Employee login( @RequestParam(name="username")String username,@RequestParam(name="password")String password) {
 		return es.loginEmployee(username, password);
 	}
 	
-	@Operation(summary="Return all employees", description="Returns all employees", tags={"User"})
+	@Operation(summary="Return all employees", description="Returns all employees", tags={"Employee"})
     @GetMapping(produces="application/json")
 	public List<Employee> getEmployees() {
 		return es.getEmployees();
 	}
 	
 	@LogIt
-	@Operation(summary = "Update specified user", description="Updates user", tags={"User"})
+	@Operation(summary = "Update specified employee", description="Updates employee", tags={"Employee"})
     @PutMapping(produces = "application/json")
-	public Employee updateEmployee(@Parameter(description="Admin to update", required=true) @Valid @RequestBody(required=true) Employee employee) {
+	public Employee updateEmployee(@Parameter(description="Employee to update", required=true) @Valid @RequestBody(required=true) Employee employee) {
 		return es.updateEmployee(employee);
 	}
 	
 	@LogIt
-	@Operation(summary = "Delete specified user", description="Deletes user by id", tags={"User"})
+	@Operation(summary = "Delete specified employee", description="Deletes employee", tags={"Employee"})
     @DeleteMapping(produces = "application/json")
-	public boolean deleteUserById(@Parameter(description="Id of Admin", required=true) @Valid @RequestBody(required=true) Employee employee) {
+	public boolean deleteEmployee(@Parameter(description="Employee to delete", required=true) @Valid @RequestBody(required=true) Employee employee) {
 		return es.deleteEmployee(employee);
 	}
 
 	
 	@Operation(summary = "Return specified user", description="Returns user by id", tags={"User"})
     @GetMapping(value = "/{id}", produces = "application/json")
-	public Employee getEmployeeById(@Parameter(description="Id of Admin", required=true) @PathVariable("id")int id) {
+	public Employee getEmployeeById(@Parameter(description="Id of Employee", required=true) @PathVariable("id")int id) {
 		return es.getEmployeeById(id);
 	}
 
