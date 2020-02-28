@@ -8,4 +8,6 @@ import com.revature.entities.Configuration;
 @Repository
 public interface ConfigurationRepo extends CrudRepository<Configuration,Integer>  {
 
+	public Configuration findByLabel(String label);
+
 }
