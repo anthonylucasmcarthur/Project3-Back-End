@@ -12,4 +12,6 @@ import com.revature.entities.Employee;
 public interface CarRepo extends CrudRepository<Car,Integer>{
 	
 	public List<Car> findByEmployee(Employee employee);
+	
+	public Car findById(int id);
 }
