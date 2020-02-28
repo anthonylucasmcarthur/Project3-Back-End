@@ -7,12 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import com.revature.entities.Car;
 import com.revature.entities.Configuration;
 import com.revature.entities.Employee;
 import com.revature.entities.Office;
 import com.revature.repositories.CarRepo;
 import com.revature.repositories.ConfigurationRepo;
+=======
+import com.revature.entities.Employee;
+import com.revature.entities.Office;
+>>>>>>> Stashed changes
 =======
 import com.revature.entities.Employee;
 import com.revature.entities.Office;
@@ -30,12 +35,15 @@ class RideforceApplicationTests {
 	EmployeeRepo er;
 	
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	@Autowired
 	CarRepo cr;
 	
 	@Autowired
 	ConfigurationRepo c;
 	
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 	@Test //works 
@@ -107,6 +115,17 @@ class RideforceApplicationTests {
 	
 	
 	
+=======
+	@Test  
+	void getByUsername(){
+		String username = "LGoodfellow";
+		Employee employee = er.findByUsername(username);
+		System.out.println(employee);
+			
+	}
+	
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 =======
 	@Test  
 	void getByUsername(){
