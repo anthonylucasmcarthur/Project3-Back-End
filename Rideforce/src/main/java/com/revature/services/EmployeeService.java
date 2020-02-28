@@ -9,7 +9,7 @@ public interface EmployeeService {
 
 	public List<Employee> getEmployees();
 	public Employee getEmployeeById(int id);
-	public List<Employee> getEmployeeByUsername(String username);
+	public Employee getEmployeeByUsername(String username);
 	public List<Employee> getEmployeeByRole(boolean isDriver);
 	public List<Employee> getEmployeeByRoleAndOffice(boolean isDriver, Office office);
 	public Employee addEmployee(Employee employee);

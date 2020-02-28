@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.revature.entities.Car;
+import com.revature.entities.Employee;
 import com.revature.repositories.CarRepo;
 
 @Component
@@ -28,7 +29,9 @@ public class CarServiceImpl implements CarService{
 
 	@Override
 	public Car getCarByEmployeeId(int employeeId) {
-		return  cr.findByEmployeeId(employeeId).get(0);
+		Employee e = new Employee();
+		e.setEmployee_id(employeeId);
+		return  (Car) cr.findByEmployee(e);
 	}
 
 	@Override

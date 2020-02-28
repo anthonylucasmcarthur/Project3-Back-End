@@ -39,7 +39,7 @@ public class Employee {
 	
 	@Column (name = "user_name")
 	@Schema (example = "asdf")
-	private String user_name;
+	private String username;
 	
 	@Column (name = "password")
 	@Schema (example = "password")
@@ -59,7 +59,7 @@ public class Employee {
 	
 	@Column (name = "is_driver")
 	@Schema (example = "true")
-	private boolean is_driver;
+	private boolean isDriver;
 	
 	@Column (name = "is_manager")
 	@Schema (example = "true")
@@ -75,20 +75,20 @@ public class Employee {
 	}
 
 	public Employee(int employee_id, String email, String first_name, String last_name, String phone_number,
-			String user_name, String password, String user_address, boolean is_accepting_rides, boolean is_active,
-			boolean is_driver, boolean is_manager, Office office) {
+			String username, String password, String user_address, boolean is_accepting_rides, boolean is_active,
+			boolean isDriver, boolean is_manager, Office office) {
 		super();
 		this.employee_id = employee_id;
 		this.email = email;
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.phone_number = phone_number;
-		this.user_name = user_name;
+		this.username = username;
 		this.password = password;
 		this.user_address = user_address;
 		this.is_accepting_rides = is_accepting_rides;
 		this.is_active = is_active;
-		this.is_driver = is_driver;
+		this.isDriver = isDriver;
 		this.is_manager = is_manager;
 		this.office = office;
 	}
@@ -133,12 +133,12 @@ public class Employee {
 		this.phone_number = phone_number;
 	}
 
-	public String getUser_name() {
-		return user_name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setUser_name(String user_name) {
-		this.user_name = user_name;
+	public void setUsername(String user_name) {
+		this.username = user_name;
 	}
 
 	public String getPassword() {
@@ -173,12 +173,12 @@ public class Employee {
 		this.is_active = is_active;
 	}
 
-	public boolean isIs_driver() {
-		return is_driver;
+	public boolean isIsDriver() {
+		return isDriver;
 	}
 
-	public void setIs_driver(boolean is_driver) {
-		this.is_driver = is_driver;
+	public void setIsDriver(boolean isDriver) {
+		this.isDriver = isDriver;
 	}
 
 	public boolean isIs_manager() {
@@ -200,9 +200,9 @@ public class Employee {
 	@Override
 	public String toString() {
 		return "Employee [employee_id=" + employee_id + ", email=" + email + ", first_name=" + first_name
-				+ ", last_name=" + last_name + ", phone_number=" + phone_number + ", user_name=" + user_name
+				+ ", last_name=" + last_name + ", phone_number=" + phone_number + ", username=" + username
 				+ ", password=" + password + ", user_address=" + user_address + ", is_accepting_rides="
-				+ is_accepting_rides + ", is_active=" + is_active + ", is_driver=" + is_driver + ", is_manager="
+				+ is_accepting_rides + ", is_active=" + is_active + ", isDriver=" + isDriver + ", is_manager="
 				+ is_manager + ", office=" + office + "]";
 	}
 	
