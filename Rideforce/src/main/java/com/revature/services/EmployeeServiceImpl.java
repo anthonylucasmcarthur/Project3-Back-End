@@ -48,13 +48,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Employee addEmployee(Employee employee) {
 		
-//		String password = System.getProperty("jasypt.password");
+		String password = System.getProperty("jasypt.password");
 		StandardPBEStringEncryptor strongEncryptor = new StandardPBEStringEncryptor();
 		strongEncryptor.setPassword(employee.getPassword());
 		HibernatePBEEncryptorRegistry registry =
 		        HibernatePBEEncryptorRegistry.getInstance();
 		registry.registerPBEStringEncryptor("STRING_ENCRYPTOR", strongEncryptor);
 		
+		employee.setPassword(password);
+		System.out.println(employee);
 		return er.save(employee);
 	}
 
