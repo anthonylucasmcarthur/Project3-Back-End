@@ -11,11 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.Parameter;
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-import org.jasypt.hibernate4.type.EncryptedStringType;
-
 import javax.persistence.ManyToOne;
 
 import io.swagger.v3.oas.annotations.media.Schema;
