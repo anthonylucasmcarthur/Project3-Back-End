@@ -31,7 +31,7 @@ public class CarServiceImpl implements CarService{
 	public Car getCarByEmployeeId(int employeeId) {
 		Employee e = new Employee();
 		e.setEmployee_id(employeeId);
-		return  (Car) cr.findByEmployee(e);
+		return  cr.findByEmployee(e);
 	}
 
 	@Override
@@ -46,8 +46,11 @@ public class CarServiceImpl implements CarService{
 
 	@Override
 	public boolean deleteCar(Car car) {
-		cr.delete(car);
-		return true;
+		if (!(cr.findById(car.getCar_id()) == null)) {
+			cr.delete(car);
+			return true;
+		}
+		return false;
 	}
 
 }
