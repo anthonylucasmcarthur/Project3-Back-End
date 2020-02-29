@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.revature.aspects.LogIt;
 import com.revature.entities.Car;
@@ -21,7 +22,6 @@ import com.revature.services.CarService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @Component
@@ -32,7 +32,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 public class CarController {
 
 	@Autowired
-	private CarService cs;
+	private CarService cs; 
 	
 	@Operation(summary= "Return list of all cars",description="Returns all cars", tags={"Car"})
 	@GetMapping(produces = "application/json")
