@@ -14,7 +14,7 @@ import com.revature.repositories.EmployeeRepo;
 @Component
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-	
+
 	@Autowired
 	EmployeeRepo er;
 
@@ -55,8 +55,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public boolean deleteEmployee(Employee employee) {
-		er.delete(employee);
-		return true;
+		if (!(er.findById(employee.getEmployee_id()) == null)) {
+			er.delete(employee);
+			return true;
+		}
+		return false;
 	}
 
 	@Override
@@ -74,13 +77,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Employee loginEmployee(String username, String password) {
 		Employee e = er.findByUsername(username);
-		
+
 		if (e.getPassword().equals(password)) {
 			return e;
-		}else {
+		} else {
 			return null;
 		}
-		
+
 	}
 
 }
