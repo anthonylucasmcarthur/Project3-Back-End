@@ -16,7 +16,7 @@ import io.swagger.v3.oas.models.info.Info;
 @EntityScan("com.revature.entities")
 public class RideforceApplication {
 
-	public static void main(String[] args) {		
+	public static void main(String[] args) {
 		SpringApplication.run(RideforceApplication.class, args); 
 	}
 

@@ -72,7 +72,7 @@ public class CarController {
 	@Operation(summary = "Return car by specified employee id", description="Returns car by employee id", tags={"Car"})
 	@GetMapping(value = "/cars/{employeeId}", produces = "application/json")
 	public Car getCarByEmployeeId(@Parameter(description="Id of Employee", required=true) @PathVariable("employeeId")int employeeId) {
-		return cs.getCarByEmployeeId(employeeId);
+		return cs.getCarByEmployeeId(employeeId).get(0);
 	}
 	
 }
