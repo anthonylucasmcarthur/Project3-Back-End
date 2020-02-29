@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.jasypt.hibernate4.encryptor.HibernatePBEEncryptorRegistry;
+import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ import com.revature.repositories.EmployeeRepo;
 @Component
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-	
+
 	@Autowired
 	EmployeeRepo er;
 
@@ -27,7 +28,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee getEmployeeById(int id) {
-		return er.findById(id);
+//		return er.findById(id);
+		return null;
 	}
 
 	@Override
@@ -47,21 +49,21 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee addEmployee(Employee employee) {
-		
-		String password = System.getProperty("jasypt.password");
-		StandardPBEStringEncryptor strongEncryptor = new StandardPBEStringEncryptor();
-		strongEncryptor.setPassword(employee.getPassword());
-		HibernatePBEEncryptorRegistry registry =
-		        HibernatePBEEncryptorRegistry.getInstance();
-		registry.registerPBEStringEncryptor("STRING_ENCRYPTOR", strongEncryptor);
-		
-		employee.setPassword(password);
-		System.out.println(employee);
+
+		StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+		String encryptedPassword = passwordEncryptor.encryptPassword(employee.getPassword());
+		employee.setPassword(encryptedPassword);
+
 		return er.save(employee);
 	}
 
 	@Override
 	public Employee updateEmployee(Employee employee) {
+		
+		StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+		String encryptedPassword = passwordEncryptor.encryptPassword(employee.getPassword());
+		employee.setPassword(encryptedPassword);
+		
 		return er.save(employee);
 	}
 
@@ -86,22 +88,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Employee loginEmployee(String username, String password) {
 		Employee e = er.findByUsername(username);
-		
-//		String password = System.getProperty("jasypt.password");
-		 
-		StandardPBEStringEncryptor strongEncryptor = new StandardPBEStringEncryptor();
-		strongEncryptor.setPassword(password);
-		HibernatePBEEncryptorRegistry registry =
-		        HibernatePBEEncryptorRegistry.getInstance();
-		registry.registerPBEStringEncryptor("STRING_ENCRYPTOR", strongEncryptor);
-		
-		if (e.getPassword().equals(password)) {
+		StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+
+		if (passwordEncryptor.checkPassword(password, e.getPassword())) {
 			return e;
-		}else {
-			System.out.println(e.getPassword());
+		} else {
 			return null;
 		}
-		
+
 	}
 
 }

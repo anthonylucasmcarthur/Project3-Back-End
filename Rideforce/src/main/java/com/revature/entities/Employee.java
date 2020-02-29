@@ -21,15 +21,6 @@ import javax.persistence.ManyToOne;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 
-@TypeDef(
-        name="encryptedString",
-        typeClass=EncryptedStringType.class,
-        parameters= {
-                // value will be used later to register encryptor
-                @Parameter(name="encryptorRegisteredName", value="STRING_ENCRYPTOR")
-        }
-)
-
 @Entity
 @Table(name = "employee")
 public class Employee implements Serializable {
@@ -60,7 +51,6 @@ public class Employee implements Serializable {
 	@Schema (example = "asdf")
 	private String username;
 	
-	@Type(type="encryptedString")
 	@Column (name = "password")
 	@Schema (example = "password")
 	private String password;
