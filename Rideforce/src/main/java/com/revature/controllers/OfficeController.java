@@ -56,13 +56,20 @@ public class OfficeController {
 		return os.updateOffice(office);
 	}
 	
+	// @LogIt
+	// @Operation(summary = "Update specified batch", description="Updates batch", tags={"Batch"})
+	// @DeleteMapping(produces = "application/json")
+	// public boolean deleteOffice(@Parameter(description="Batch to update", required=true) @Valid @RequestBody(required = true) Office office) {
+	// 	return os.deleteOffice(office);
+	// }
+
 	@LogIt
-	@Operation(summary = "Update specified batch", description="Updates batch", tags={"Batch"})
-	@DeleteMapping(produces = "application/json")
-	public boolean deleteOffice(@Parameter(description="Batch to update", required=true) @Valid @RequestBody(required = true) Office office) {
-		return os.deleteOffice(office);
+	@Operation(summary = "Delete specified office", description="Updates office", tags={"Office"})
+	@DeleteMapping(value = "/{id}", produces = "application/json")
+	public boolean deleteOffice(@Parameter(description="Office to update", required=true)@PathVariable("id")int id) {
+		return os.deleteOffice(os.getOfficeById(id));
 	}
-	
+
 	
 	@Operation(summary = "Return specified batch", description="Returns batch by number", tags={"Batch"})
 	@GetMapping(value = "/{id}", produces = "application/json")
