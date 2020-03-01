@@ -56,13 +56,19 @@ public class OfficeController {
 		return os.updateOffice(office);
 	}
 	
+//	@LogIt
+//	@Operation(summary = "Delete specified office", description="Updates office", tags={"Office"})
+//	@DeleteMapping(produces = "application/json")
+//	public boolean deleteOffice(@Parameter(description="Office to update", required=true) @Valid @RequestBody(required = true) Office office) {
+//		return os.deleteOffice(office);
+//	}
+	
 	@LogIt
 	@Operation(summary = "Delete specified office", description="Updates office", tags={"Office"})
-	@DeleteMapping(produces = "application/json")
-	public boolean deleteOffice(@Parameter(description="Office to update", required=true) @Valid @RequestBody(required = true) Office office) {
-		return os.deleteOffice(office);
+	@DeleteMapping(value = "/{id}", produces = "application/json")
+	public boolean deleteOffice(@Parameter(description="Office to update", required=true)@PathVariable("id")int id) {
+		return os.deleteOffice(os.getOfficeById(id));
 	}
-	
 	
 	@Operation(summary = "Return specified office", description="Returns office by number", tags={"Office"})
 	@GetMapping(value = "/{id}", produces = "application/json")

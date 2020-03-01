@@ -69,12 +69,20 @@ public class EmployeeController {
 		return es.updateEmployee(employee);
 	}
 
+//	@LogIt
+//	@Operation(summary = "Delete specified employee", description = "Deletes employee", tags = { "Employee" })
+//	@DeleteMapping(produces = "application/json")
+//	public boolean deleteEmployee(
+//			@Parameter(description = "Employee to delete", required = true) @Valid @RequestBody(required = true) Employee employee) {
+//		return es.deleteEmployee(employee);
+//	}
+	
 	@LogIt
 	@Operation(summary = "Delete specified employee", description = "Deletes employee", tags = { "Employee" })
-	@DeleteMapping(produces = "application/json")
+	@DeleteMapping(value = "/{id}", produces = "application/json")
 	public boolean deleteEmployee(
-			@Parameter(description = "Employee to delete", required = true) @Valid @RequestBody(required = true) Employee employee) {
-		return es.deleteEmployee(employee);
+			@Parameter(description = "Employee to delete", required = true) @PathVariable("id") int id) {
+		return es.deleteEmployee(es.getEmployeeById(id));
 	}
 
 	@Operation(summary = "Return specified user", description = "Returns user by id", tags = { "User" })
