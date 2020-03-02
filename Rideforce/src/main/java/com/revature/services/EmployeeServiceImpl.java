@@ -3,6 +3,7 @@ package com.revature.services;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
@@ -45,11 +46,21 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee addEmployee(Employee employee) {
+		
+		StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+		String encryptedPassword = passwordEncryptor.encryptPassword(employee.getPassword());
+		employee.setPassword(encryptedPassword);
+		
 		return er.save(employee);
 	}
 
 	@Override
 	public Employee updateEmployee(Employee employee) {
+		
+		StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+		String encryptedPassword = passwordEncryptor.encryptPassword(employee.getPassword());
+		employee.setPassword(encryptedPassword);
+		
 		return er.save(employee);
 	}
 
@@ -75,7 +86,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public Employee loginEmployee(String username, String password) {
 		Employee e = er.findByUsername(username);
 		
-		if (e.getPassword().equals(password)) {
+		StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
+		
+		if (passwordEncryptor.checkPassword(password, e.getPassword())) {
 			return e;
 		}else {
 			return null;
