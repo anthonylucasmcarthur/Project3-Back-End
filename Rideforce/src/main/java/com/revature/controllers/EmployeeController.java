@@ -48,6 +48,14 @@ public class EmployeeController {
 		   return es.loginEmployee(username, password);
 	}
 	
+	@LogIt
+	@Operation(summary = "Add specified employee", description="Adds employee", tags={"Employee"})
+    @PostMapping(produces = "application/json")
+	public Employee addEmployee(@Parameter(description="Employee to add", required=true) @Valid @RequestBody(required=true) Employee employee) {
+		System.out.println(employee);
+		return es.addEmployee(employee);
+	}
+	
 	@Autowired
 	private DistanceService ds;
 
