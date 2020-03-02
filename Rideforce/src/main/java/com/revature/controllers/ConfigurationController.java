@@ -24,8 +24,8 @@ public class ConfigurationController {
 	private ConfigurationService cs;
 	
 	@Operation(summary= "Return API key",description="Returns API key", tags={"Configuration"})
-	@GetMapping(value = "/{label}", produces = "application/json")
-	public String getConfiguration(@Parameter(description="Label", required=true) @PathVariable("id")String label) {
+	@GetMapping(value = "/{labelId}", produces = "application/json")
+	public String getConfiguration(@Parameter(description="Label", required=true) @PathVariable("labelId")String label) {
 		return cs.getConfigurationByLabel(label);
 	}
 	
