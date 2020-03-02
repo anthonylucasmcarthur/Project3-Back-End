@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.revature.aspects.LogIt;
 import com.revature.entities.Employee;
 import com.revature.services.EmployeeService;
@@ -37,8 +38,11 @@ public class EmployeeController {
 	
 	@PostMapping(value = "/login" ,produces="application/json")
 	@Operation(summary = "Log in operation", description="Returns employee", tags={"Employee"})
-	public Employee login(@Parameter(description="Employee to log in", required=true) @Valid @RequestBody(required=true) Employee employee) {
-		return es.loginEmployee(employee.getUsername(),employee.getPassword());
+	public Employee login(@Parameter(description="Employee to log in", required=true) @Valid @RequestBody ObjectNode objectNode) {
+		   String username = objectNode.get("username").asText();
+		   String password = objectNode.get("password").asText();
+		   
+		return es.loginEmployee(username, password);
 	}
 	
 	@Operation(summary="Return all employees", description="Returns all employees", tags={"Employee"})
