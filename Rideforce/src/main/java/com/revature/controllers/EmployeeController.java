@@ -45,15 +45,11 @@ public class EmployeeController {
 		   String username = objectNode.get("username").asText();
 		   String password = objectNode.get("password").asText();
 		   
+		   return es.loginEmployee(username, password);
+	}
+	
 	@Autowired
 	private DistanceService ds;
-
-	@PostMapping
-	@Operation(summary = "Log in operation", description = "Returns employee", tags = { "Employee" })
-	public Employee login(@RequestParam(name = "username") String username,
-			@RequestParam(name = "password") String password) {
-		return es.loginEmployee(username, password);
-	}
 
 	@Operation(summary = "Return all employees", description = "Returns all employees", tags = { "Employee" })
 	@GetMapping(produces = "application/json")
