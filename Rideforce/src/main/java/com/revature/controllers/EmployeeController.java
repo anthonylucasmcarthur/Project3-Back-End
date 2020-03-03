@@ -1,7 +1,7 @@
 package com.revature.controllers;
 
+import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import javax.validation.Valid;
 
@@ -13,15 +13,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.google.maps.errors.ApiException;
 import com.revature.aspects.LogIt;
 import com.revature.entities.Employee;
+import com.revature.services.DistanceService;
 import com.revature.services.EmployeeService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -37,23 +38,26 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService es;
-
-	@PostMapping(value = "/create", produces = "application/json")
-	@Operation(summary = "Create employeee operation", description = "Creates employee", tags = { "Employee" })
-	public Employee addEmployee(
-			@Parameter(description = "Employee to create", required = true) @Valid @RequestBody(required = true) Employee employee) {
+	
+	@PostMapping(value = "/login" ,produces="application/json")
+	@Operation(summary = "Log in operation", description="Returns employee", tags={"Employee"})
+	public Employee login(@Parameter(description="Employee to log in", required=true) @Valid @RequestBody ObjectNode objectNode) {
+		   String username = objectNode.get("username").asText();
+		   String password = objectNode.get("password").asText();
+		   
+		   return es.loginEmployee(username, password);
+	}
+	
+	@LogIt
+	@Operation(summary = "Add specified employee", description="Adds employee", tags={"Employee"})
+    @PostMapping(produces = "application/json")
+	public Employee addEmployee(@Parameter(description="Employee to add", required=true) @Valid @RequestBody(required=true) Employee employee) {
+		System.out.println(employee);
 		return es.addEmployee(employee);
 	}
-
-	@PostMapping(value = "/login")
-	@Operation(summary = "Log in operation", description = "Returns employee", tags = { "Employee" })
-	public Employee login(
-			@Parameter(description = "Employee to login", required = true) @Valid @RequestBody ObjectNode objectNode) {
-		String username = objectNode.get("username").asText();
-		String password = objectNode.get("password").asText();
-
-		return es.loginEmployee(username, password);
-	}
+	
+	@Autowired
+	private DistanceService ds;
 
 	@Operation(summary = "Return all employees", description = "Returns all employees", tags = { "Employee" })
 	@GetMapping(produces = "application/json")
@@ -77,11 +81,19 @@ public class EmployeeController {
 		return es.deleteEmployee(employee);
 	}
 
-	@Operation(summary = "Return specified user", description = "Returns user by id", tags = { "User" })
+	@Operation(summary = "Return specified employee", description = "Returns user by id", tags = { "Employee" })
 	@GetMapping(value = "/{id}", produces = "application/json")
 	public Employee getEmployeeById(
 			@Parameter(description = "Id of Employee", required = true) @PathVariable("id") int id) {
 		return es.getEmployeeById(id);
+	}
+
+	@Operation(summary = "Return five closest drivers", description="Returns five closest drivers", tags={"Employee"})
+	@GetMapping(value = "/driver/{address}", produces = "application/json")
+	public List<Employee> getDriverByLocation(
+			@Parameter(description = "Address of driver", required = true) @PathVariable("address") String address) throws ApiException, InterruptedException, IOException {
+		return ds.getDriverByLocation(address);
+		
 	}
 
 }

@@ -3,8 +3,6 @@ package com.revature.services;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
-import org.jasypt.hibernate4.encryptor.HibernatePBEEncryptorRegistry;
 import org.jasypt.util.password.StrongPasswordEncryptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,7 +15,7 @@ import com.revature.repositories.EmployeeRepo;
 @Component
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-
+	
 	@Autowired
 	EmployeeRepo er;
 
@@ -28,8 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee getEmployeeById(int id) {
-//		return er.findById(id);
-		return null;
+		return er.findById(id);
 	}
 
 	@Override
@@ -49,11 +46,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee addEmployee(Employee employee) {
-
+		
 		StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
 		String encryptedPassword = passwordEncryptor.encryptPassword(employee.getPassword());
 		employee.setPassword(encryptedPassword);
-
+		
 		return er.save(employee);
 	}
 
@@ -69,11 +66,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public boolean deleteEmployee(Employee employee) {
-		if (!(er.findById(employee.getEmployee_id()) == null)) {
-			er.delete(employee);
-			return true;
-		}
-		return false;
+		er.delete(employee);
+		return true;
 	}
 
 	@Override
@@ -91,14 +85,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public Employee loginEmployee(String username, String password) {
 		Employee e = er.findByUsername(username);
+		
 		StrongPasswordEncryptor passwordEncryptor = new StrongPasswordEncryptor();
-
+		
 		if (passwordEncryptor.checkPassword(password, e.getPassword())) {
 			return e;
-		} else {
+		}else {
 			return null;
 		}
-
+		
 	}
 
 }
